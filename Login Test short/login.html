@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Example user credentials (stored in memory for demonstration purposes)
+        const userCredentials = {
+            "testuser": "password123",
+            "admin": "adminpass"
+        };
+
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const notification = document.getElementById("notification");
+
+            if (userCredentials[username] && userCredentials[username] === password) {
+                notification.textContent = "Login successful!";
+                notification.className = "notification success";
+            } else if (!userCredentials[username]) {
+                notification.textContent = "Username not found. Please create an account.";
+                notification.className = "notification error";
+            } else {
+                notification.textContent = "Incorrect password. Please try again.";
+                notification.className = "notification error";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="notification" class="notification"></div> <!-- Notification box -->
+        <form onsubmit="login(event)">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="create_account.html">Create Account</a>
+    </div>
+</body>
+</html>
